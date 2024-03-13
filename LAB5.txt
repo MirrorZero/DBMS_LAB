@@ -58,4 +58,11 @@ INSERT INTO ORDERS (ord_no, purch_amt, ord_date, customer_id, salesman_id) VALUE
 
 select s.* from SALESMAN s join CUSTOMER c on s.city = c.city;
 select o.* from ORDERS o where purch_amt > (select min(purch_amt) from ORDERS where ord_date='2012-09-10');
-select o.* from ORDERS o join CUSTOMER c on o.customer_id = c.customer_id where o.purch_amt < (select min(o2.purch_amt) from ORDERS o2 join CUSTOMER c2 on o2.customer_id=c2.customer_id where c2.city ='London'); 
+select o.* from ORDERS o join CUSTOMER c on o.customer_id = c.customer_id where o.purch_amt < (select min(o2.purch_amt) from ORDERS o2 join CUSTOMER c2 on o2.customer_id=c2.customer_id where c2.city ='London');
+select c.* from CUSTOMER c where grade > (select max(grade) from CUSTOMER where city='New York');
+select c.* from CUSTOMER c where grade <> (select grade from CUSTOMER where city = 'London' limit 1);
+select o.* from ORDERS o join SALESMAN s on o.salesman_id = s.salesman_id where s.Name1SALESMAN = 'Paul Adam';
+select o.* from ORDERS o join SALESMAN s on o.salesman_id = s.salesman_id where s.city = 'London';
+select * from ORDERS where purch_amt > (select avg(purch_amt) from ORDERS where ord_date = '2012-10-10');
+select * from SALESMAN where city = 'Paris';
+select * from CUSTOMER join ORDERS on ORDERS.customer_id = CUSTOMER.customer_id where ORDERS.ord_date = '2012-10-05';
