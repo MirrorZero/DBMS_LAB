@@ -64,5 +64,4 @@ select c.* from CUSTOMER c where grade <> (select grade from CUSTOMER where city
 select o.* from ORDERS o join SALESMAN s on o.salesman_id = s.salesman_id where s.Name1SALESMAN = 'Paul Adam';
 select o.* from ORDERS o join SALESMAN s on o.salesman_id = s.salesman_id where s.city = 'London';
 select * from ORDERS where purch_amt > (select avg(purch_amt) from ORDERS where ord_date = '2012-10-10');
-select * from SALESMAN where city = 'Paris';
-select * from CUSTOMER join ORDERS on ORDERS.customer_id = CUSTOMER.customer_id where ORDERS.ord_date = '2012-10-05';
+select * from SALESMAN where city = 'Paris';select * from CUSTOMER join ORDERS on ORDERS.customer_id = CUSTOMER.customer_id where ORDERS.ord_date = '2012-10-05';
