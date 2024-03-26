@@ -15,3 +15,16 @@ select * from v2;
 
 create view v3 as select grade,count(*) from CUSTOMER group by grade;
 select * from v3;
+CREATE VIEW v4 AS SELECT ord_date, COUNT(DISTINCT customer_id) AS count, AVG(order_amount) AS avg, SUM(order_amount) AS sum FROM orders GROUP BY ord_date ORDER BY ord_date ASC;
+
+create view v4 as select ord_date,count(distinct customer_id) as count,avg(ORDERS.purch_amt),sum(ORDERS.purch_amt) as sum from ORDERS group by ord_date order by ord_date asc;
+select * from v4;
+
+create table course(course_id varchar(256),title varchar(256),dept_name varchar(256),credits int(10));
+create table prereq(course_id varchar(256),prereq_id varchar(256));
+insert into course(course_id,title,dept_name,credits) values ("BIO-301","Genetics","Biology",4),("CS-190","Game Design","Comp. Sci",4),("CS-315","Robotics","Comp.Sci.",3);
+insert into prereq(course_id,prereq_id) values ("BIO-301","BIO-101"),("CS-190","CS-101"),("CS-315","CS-101");
+
+select c.course_id,c.title,c.dept_name,c.credits,p.prereq_id from course c left outer join prereq p on c.course_id=p.course_id;
+select c.course_id,c.title,c.dept_name,c.credits,p.prereq_id from course c right outer join prereq p on c.course_id=p.course_id;
+select c.course_id,c.title,c.dept_name,c.credits,NULL as prereq_id from course c union select NULL,NULL,NULL,NULL,prereq_id as prereq_id from prereq;
