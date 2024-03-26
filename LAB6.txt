@@ -1,0 +1,17 @@
+-- LAB6
+
+select s.salesman_id,s.Name1SALESMAN,s.city,c.customer_id,c.cust_name from SALESMAN s,CUSTOMER c where c.salesman_id = s.salesman_id;
+select * from CUSTOMER c join SALESMAN s on s.salesman_id = c.salesman_id where s.commission>12;
+select * from CUSTOMER c join SALESMAN s on s.salesman_id = c.salesman_id and s.city != c.city where s.commission>12;
+select * from SALESMAN natural join CUSTOMER,ORDERS;
+select * from CUSTOMER order by customer_id asc;
+select * from CUSTOMER,SALESMAN;
+
+create view v1 as select salesman_id,Name1SALESMAN,city from SALESMAN;
+select * from v1;
+
+create view v2 as select salesman_id,Name1SALESMAN,city,commission from SALESMAN where city='New York';
+select * from v2;
+
+create view v3 as select grade,count(*) from CUSTOMER group by grade;
+select * from v3;
